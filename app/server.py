@@ -8,25 +8,17 @@ app.secret_key = os.environ.get("SECRET_KEY", "dev-secret")
 USERS_FILE = "users.json"
 
 
-# --------------------------
-# Helper functions
-# --------------------------
-
 def load_users():
     if not os.path.exists(USERS_FILE):
         return {}
-    with open(USERS_FILE, "r") as f:
+    with open(USERS_FILE, "r", encoding="utf-8") as f:
         return json.load(f)
 
 
 def save_users(users):
-    with open(USERS_FILE, "w") as f:
+    with open(USERS_FILE, "w", encoding="utf-8") as f:
         json.dump(users, f)
 
-
-# --------------------------
-# Routes
-# --------------------------
 
 @app.get("/")
 def root():
@@ -45,17 +37,12 @@ def member():
     return redirect("/voila/render/memberversion.ipynb")
 
 
-# --------------------------
-# LOGIN
-# --------------------------
-
 @app.post("/login")
 def login():
-    email = request.form.get("email", "").lower()
+    email = request.form.get("email", "").strip().lower()
     psw = request.form.get("psw", "")
 
     users = load_users()
-
     if email in users and users[email] == psw:
         session["user"] = email
         return redirect("/member")
@@ -63,28 +50,18 @@ def login():
     return redirect("/guest")
 
 
-# --------------------------
-# SIGN UP  ⭐ NEW
-# --------------------------
-
 @app.post("/signup")
 def signup():
-    email = request.form.get("email", "").lower()
+    email = request.form.get("email", "").strip().lower()
     psw = request.form.get("psw", "")
 
     if not email or not psw:
         return redirect("/guest")
 
     users = load_users()
-
-    # If user already exists → just log them in
-    if email in users:
-        session["user"] = email
-        return redirect("/member")
-
-    # Save new user
-    users[email] = psw
-    save_users(users)
+    if email not in users:
+        users[email] = psw
+        save_users(users)
 
     session["user"] = email
     return redirect("/member")
