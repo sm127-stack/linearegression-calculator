@@ -72,3 +72,7 @@ def signup():
 
     session["user"] = email
     return redirect("/member")
+
+@app.get("/ping")
+def ping():
+    return "pong"
