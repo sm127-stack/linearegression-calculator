@@ -2,11 +2,10 @@ events {}
 
 http {
   server {
-    listen ${PORT};
+    listen $PORT;
 
-    # send /voila/* to the Voila server (running internally on 8866)
     location /voila/ {
-      proxy_pass http://127.0.0.1:8866/voila/;
+      proxy_pass http://127.0.0.1:8866;
       proxy_http_version 1.1;
       proxy_set_header Host $host;
       proxy_set_header X-Real-IP $remote_addr;
@@ -14,7 +13,6 @@ http {
       proxy_set_header X-Forwarded-Proto $scheme;
     }
 
-    # everything else goes to Flask (running internally on 8000)
     location / {
       proxy_pass http://127.0.0.1:8000;
       proxy_http_version 1.1;
