@@ -1,45 +1,46 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <title>Linear Regression Calculator</title>
   <style>
     *{box-sizing:border-box;font-family:Arial}
-    .btn{display:inline-block;padding:14px 20px;background:#888;color:#fff;cursor:pointer;text-decoration:none;border:0}
-    .center-screen{display:flex;justify-content:center;align-items:center;height:60vh}
-    .topbar{display:flex;gap:10px;padding:16px}
-    .box{background:#fff;margin:16px;padding:20px;border:1px solid #888;max-width:420px}
-    input{width:100%;padding:12px;margin:8px 0;border:1px solid #ddd}
-    .full{width:100%;margin-top:10px;background:#888;color:#fff;padding:14px 20px;border:0;cursor:pointer}
+    body{margin:0;padding:0}
+    .wrap{max-width:1100px;margin:0 auto;padding:24px}
+    .row{display:flex;gap:24px;flex-wrap:wrap}
+    .card{flex:1;min-width:320px;border:1px solid #bbb;padding:18px}
+    label{display:block;margin-top:10px}
+    input{width:100%;padding:12px;margin-top:6px;border:1px solid #ddd}
+    .btn{display:inline-block;padding:14px 20px;background:#777;color:#fff;text-decoration:none;border:0;cursor:pointer}
+    .btn.full{width:100%;margin-top:14px}
+    .center{display:flex;justify-content:center;margin-top:30px}
   </style>
 </head>
 <body>
+  <div class="wrap">
+    <div class="row">
+      <form class="card" action="https://linearegression-backend.onrender.com/login" method="post">
+        <h2>Login</h2>
+        <label>Email</label>
+        <input name="email" type="email" required>
+        <label>Password</label>
+        <input name="psw" type="password" required>
+        <button class="btn full" type="submit">Login</button>
+      </form>
 
-  <div class="topbar">
-    <!-- LOGIN -->
-    <form class="box" action="https://linearegression-backend.onrender.com/login" method="post">
-      <h3>Login</h3>
-      <label>Email</label>
-      <input name="email" type="email" required>
-      <label>Password</label>
-      <input name="psw" type="password" required>
-      <button class="full" type="submit">Login</button>
-    </form>
+      <form class="card" action="https://linearegression-backend.onrender.com/signup" method="post">
+        <h2>Sign Up</h2>
+        <label>Email</label>
+        <input name="email" type="email" required>
+        <label>Password</label>
+        <input name="psw" type="password" required>
+        <button class="btn full" type="submit">Sign Up</button>
+      </form>
+    </div>
 
-    <!-- SIGNUP -->
-    <form class="box" action="https://linearegression-backend.onrender.com/signup" method="post">
-      <h3>Sign Up</h3>
-      <label>Email</label>
-      <input name="email" type="email" required>
-      <label>Password</label>
-      <input name="psw" type="password" required>
-      <button class="full" type="submit">Sign Up</button>
-    </form>
+    <div class="center">
+      <a class="btn" href="https://linearegression-backend.onrender.com/guest">Open Calculator</a>
+    </div>
   </div>
-
-  <div class="center-screen">
-    <a class="btn" href="https://linearegression-backend.onrender.com/guest">Open Calculator</a>
-  </div>
-
 </body>
 </html>
