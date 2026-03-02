@@ -1,10 +1,10 @@
 #!/usr/bin/env sh
 set -e
 
-# Flask
+# Start Flask (internal)
 gunicorn -b 127.0.0.1:8000 server:app &
 
-# Voilà (show tracebacks so notebook errors are visible)
+# Start Voilà (internal)
 voila /app --no-browser \
   --Voila.ip=127.0.0.1 \
   --Voila.port=8866 \
@@ -14,5 +14,5 @@ voila /app --no-browser \
 # Nginx config
 envsubst '$PORT' < /app/nginx.conf.template > /etc/nginx/nginx.conf
 
-# Nginx in foreground
+# Run nginx in foreground (public)
 nginx -g "daemon off;"
