@@ -5,7 +5,7 @@ set -e
 gunicorn -b 127.0.0.1:8000 server:app &
 
 # Start Voilà (internal)
-voila /app --no-browser \
+voila /app/app --no-browser \
   --Voila.ip=127.0.0.1 \
   --Voila.port=8866 \
   --Voila.base_url=/voila/ \
