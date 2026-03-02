@@ -8,7 +8,8 @@ gunicorn -b 127.0.0.1:8000 server:app &
 voila /app --no-browser \
   --Voila.ip=127.0.0.1 \
   --Voila.port=8866 \
-  --Voila.base_url=/voila/ &
+  --Voila.base_url=/voila/ \
+  --show_tracebacks=True &
 
 # Generate nginx.conf from template using Render's PORT
 envsubst '$PORT' < /app/nginx.conf.template > /etc/nginx/nginx.conf
